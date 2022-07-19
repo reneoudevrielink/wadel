@@ -1,0 +1,109 @@
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <grammars>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      xmlns:tns="http://www.pb.com/spectrum/services/sendSimpleNotification" attributeFormDefault="unqualified"
+      elementFormDefault="unqualified" targetNamespace="http://www.pb.com/spectrum/services/sendSimpleNotification">
+      <xs:element name="apidata.SimpleNotificationRequest" type="tns:apidata.SimpleNotificationRequest"/>
+      <xs:element name="apidata.SimpleNotificationRequest.notificationData"
+        type="tns:apidata.SimpleNotificationRequest.notificationData"/>
+      <xs:element name="apidata.SimpleNotificationRequestList" type="tns:apidata.SimpleNotificationRequestList"/>
+      <xs:element name="json.Response.SimpleNotificationResponse" type="tns:json.Response.SimpleNotificationResponse"/>
+      <xs:element name="json.sendSimpleNotificationResponse" type="tns:json.sendSimpleNotificationResponse"/>
+      <xs:complexType name="sendSimpleNotificationRequest">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="options" type="tns:options"/>
+          <xs:element form="qualified" minOccurs="0" name="apidata" type="tns:apidata.SimpleNotificationRequestList"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="options">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="apidata.SimpleNotificationRequestList">
+        <xs:sequence>
+          <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="SimpleNotificationRequest"
+            type="tns:apidata.SimpleNotificationRequest"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="apidata.SimpleNotificationRequest">
+        <xs:all>
+          <xs:element form="qualified" minOccurs="0" name="source" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="documentClass" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="documentSubClass" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="createTime" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="environment" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="notificationData"
+            type="tns:apidata.SimpleNotificationRequest.notificationData"/>
+          <xs:element form="qualified" minOccurs="0" name="user_fields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="user_field"
+                  type="tns:user_field"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+      <xs:complexType name="apidata.SimpleNotificationRequest.notificationData">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="customerId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="user_field">
+        <xs:sequence>
+          <xs:element form="qualified" name="name" type="xs:string"/>
+          <xs:element form="qualified" name="value" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="json.sendSimpleNotificationResponse">
+        <xs:sequence>
+          <xs:element form="qualified" minOccurs="0" name="Response">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="SimpleNotificationResponse"
+                  type="tns:json.Response.SimpleNotificationResponse"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="json.Response.SimpleNotificationResponse">
+        <xs:all>
+          <xs:element form="qualified" minOccurs="0" name="errorCode" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="errorMessage" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="RecordID" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="Status" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="Status.Code" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="Status.Description" type="xs:string"/>
+          <xs:element form="qualified" minOccurs="0" name="user_fields">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="user_field"
+                  type="tns:user_field"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:all>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      xmlns:ns1="http://www.pb.com/spectrum/services/sendSimpleNotification" attributeFormDefault="unqualified"
+      elementFormDefault="unqualified" targetNamespace="http://www.pb.com/spectrum/services/sendSimpleNotification">
+      <xs:import namespace="http://www.pb.com/spectrum/services/sendSimpleNotification"/>
+      <xs:element name="sendSimpleNotificationRequest" type="ns1:sendSimpleNotificationRequest"/>
+    </xs:schema>
+  </grammars>
+  <resources base="https://nl-eo-spectrum-sit.dc-ratingen.de:8443/rest/sendSimpleNotification">
+    <resource path="/">
+      <resource path="sendSimpleNotification">
+        <method name="POST">
+          <request>
+            <representation mediaType="application/json"/>
+          </request>
+          <response>
+            <representation mediaType="application/json"/>
+          </response>
+        </method>
+      </resource>
+    </resource>
+  </resources>
+</application>
